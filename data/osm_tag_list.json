@@ -1,0 +1,23 @@
+[
+  "highway+name",
+  "addr:housenumber+addr:street",
+  "amenity+name",
+  "building+name",
+  "shop+name",
+  "office+name",
+  "public_transport+name",
+  "cuisine+name",
+  "railway+name",
+  "sport+name",
+  "natural+name",
+  "tourism+name",
+  "leisure+name",
+  "historic+name",
+  "man_made+name",
+  "landuse+name",
+  "waterway+name",
+  "aerialway+name",
+  "aeroway+name",
+  "craft+name",
+  "military+name"
+]
