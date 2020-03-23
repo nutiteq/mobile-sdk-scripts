@@ -1,0 +1,1732 @@
+{
+  "Road Assistance": {
+    "class": "car_repair",
+    "category_class": "road_assistance",
+    "zoom": 15
+  },
+  "Van Repair": {
+    "class": "car_repair",
+    "category_class": "van_repair",
+    "zoom": 15
+  },
+  "Truck Repair": {
+    "class": "car_repair",
+    "category_class": "truck_repair",
+    "zoom": 15
+  },
+  "Tire Repair": {
+    "class": "car_repair",
+    "category_class": "tire_repair",
+    "zoom": 15
+  },
+  "Auto Parts": {
+    "class": "car_repair",
+    "category_class": "auto_parts",
+    "zoom": 15
+  },
+  "Car Repair": {
+    "class": "car_repair",
+    "category_class": "car_repair",
+    "zoom": 15
+  },
+  "Car Repair-Service": {
+    "class": "car_repair",
+    "category_class": "car_repair_service",
+    "zoom": 15
+  },
+  "Towing Service": {
+    "class": "car_repair",
+    "category_class": "towing_service",
+    "zoom": 15
+  },
+  "Motorcycle Service and Maintenance": {
+    "class": "car_repair",
+    "category_class": "motorcycle_service_and_maintenance",
+    "zoom": 15
+  },
+  "Petrol-Gasoline Station": {
+    "class": "gas",
+    "category_class": "petrol_gasoline_station",
+    "zoom": 15
+  },
+  "Fueling Station": {
+    "class": "gas",
+    "category_class": "fueling_station",
+    "zoom": 15
+  },
+  "Hydrogen Fueling Station": {
+    "class": "gas",
+    "category_class": "hydrogen_fueling_station",
+    "zoom": 15
+  },
+  "Ferry Terminal": {
+    "class": "ferry_terminal",
+    "category_class": "ferry_terminal",
+    "zoom": 15
+  },
+  "Boat Ferry": {
+    "class": "ferry_terminal",
+    "category_class": "boat_ferry",
+    "zoom": 15
+  },
+  "Rail Ferry": {
+    "class": "ferry_terminal",
+    "category_class": "rail_ferry",
+    "zoom": 15
+  },
+  "Water Transit": {
+    "class": "ferry_terminal",
+    "category_class": "water_transit",
+    "zoom": 15
+  },
+  "Seaport-Harbour": {
+    "class": "ferry_terminal",
+    "category_class": "seaport_harbour",
+    "zoom": 15
+  },
+  "Forest, Heath or Other Vegetation": {
+    "class": "forest",
+    "category_class": "forest_heath_or_other_vegetation",
+    "zoom": 15
+  },
+  "Body of water": {
+    "class": "body_of_water",
+    "category_class": "body_of_water",
+    "zoom": 14
+  },
+  "Reservoir": {
+    "class": "body_of_water",
+    "category_class": "reservoir",
+    "zoom": 14
+  },
+  "Bay-Harbor": {
+    "class": "body_of_water",
+    "category_class": "bay_harbor",
+    "zoom": 14
+  },
+  "River": {
+    "class": "body_of_water",
+    "category_class": "river",
+    "zoom": 14
+  },
+  "Canal": {
+    "class": "body_of_water",
+    "category_class": "canal",
+    "zoom": 14
+  },
+  "Lake": {
+    "class": "body_of_water",
+    "category_class": "lake",
+    "zoom": 14
+  },
+  "ATM": {
+    "class": "atms",
+    "category_class": "atm",
+    "zoom": 20
+  },
+  "Weigh Station": {
+    "class": "bicycle",
+    "category_class": "weigh_station",
+    "zoom": 19
+  },
+  "Bicycle Service": {
+    "class": "bicycle",
+    "category_class": "bicycle_service",
+    "zoom": 19
+  },
+  "Bicycle and Bicycle Accessories Shop": {
+    "class": "bicycle",
+    "category_class": "bicycle_and_bicycle_accessories_shop",
+    "zoom": 19
+  },
+  "Bicycle Service and Maintenance": {
+    "class": "bicycle",
+    "category_class": "bicycle_service_and_maintenance",
+    "zoom": 19
+  },
+  "Bicycle Sharing Location": {
+    "class": "bicycle",
+    "category_class": "bicycle_sharing_location",
+    "zoom": 19
+  },
+  "Bicycle Parking": {
+    "class": "bicycle",
+    "category_class": "bicycle_parking",
+    "zoom": 19
+  },
+  "Butcher": {
+    "class": "butcher",
+    "category_class": "butcher",
+    "zoom": 19
+  },
+  "Dry Cleaning and Laundry": {
+    "class": "dry_cleaning",
+    "category_class": "dry_cleaning_and_laundry",
+    "zoom": 19
+  },
+  "Video Arcade-Game Room": {
+    "class": "entertainment",
+    "category_class": "video_arcade_game_room",
+    "zoom": 19
+  },
+  "Internet Cafe": {
+    "class": "entertainment",
+    "category_class": "internet_cafe",
+    "zoom": 19
+  },
+  "Take Out and Delivery Only": {
+    "class": "food_delivery",
+    "category_class": "take_out_and_delivery_only",
+    "zoom": 19
+  },
+  "Hair and Beauty": {
+    "class": "beauty_salons",
+    "category_class": "hair_and_beauty",
+    "zoom": 18
+  },
+  "Barber": {
+    "class": "beauty_salons",
+    "category_class": "barber",
+    "zoom": 18
+  },
+  "Nail Salon": {
+    "class": "beauty_salons",
+    "category_class": "nail_salon",
+    "zoom": 18
+  },
+  "Hair Salon": {
+    "class": "beauty_salons",
+    "category_class": "hair_salon",
+    "zoom": 18
+  },
+  "Body Piercing and Tattoos": {
+    "class": "beauty_salons",
+    "category_class": "body_piercing_and_tattoos",
+    "zoom": 18
+  },
+  "Tanning Salon": {
+    "class": "beauty_salons",
+    "category_class": "tanning_salon",
+    "zoom": 18
+  },
+  "Casual Dining": {
+    "class": "fast_food",
+    "category_class": "casual_dining",
+    "zoom": 18
+  },
+  "Food Market-Stall": {
+    "class": "fast_food",
+    "category_class": "food_market_stall",
+    "zoom": 18
+  },
+  "Taqueria": {
+    "class": "fast_food",
+    "category_class": "taqueria",
+    "zoom": 18
+  },
+  "Deli": {
+    "class": "fast_food",
+    "category_class": "deli",
+    "zoom": 18
+  },
+  "Cafeteria": {
+    "class": "fast_food",
+    "category_class": "cafeteria",
+    "zoom": 18
+  },
+  "Bistro": {
+    "class": "fast_food",
+    "category_class": "bistro",
+    "zoom": 18
+  },
+  "Fast Food": {
+    "class": "fast_food",
+    "category_class": "fast_food",
+    "zoom": 18
+  },
+  "Pizza": {
+    "class": "fast_food",
+    "category_class": "pizza",
+    "zoom": 18
+  },
+  "Snacks & Beverages": {
+    "class": "fast_food",
+    "category_class": "snacks_beverages",
+    "zoom": 18
+  },
+  "Hot Dogs": {
+    "class": "fast_food",
+    "category_class": "hot_dogs",
+    "zoom": 18
+  },
+  "Sandwich": {
+    "class": "fast_food",
+    "category_class": "sandwich",
+    "zoom": 18
+  },
+  "Breakfast": {
+    "class": "fast_food",
+    "category_class": "breakfast",
+    "zoom": 18
+  },
+  "Chicken": {
+    "class": "fast_food",
+    "category_class": "chicken",
+    "zoom": 18
+  },
+  "Ice Cream": {
+    "class": "fast_food",
+    "category_class": "ice_cream",
+    "zoom": 18
+  },
+  "International": {
+    "class": "fast_food",
+    "category_class": "international",
+    "zoom": 18
+  },
+  "Continental": {
+    "class": "fast_food",
+    "category_class": "continental",
+    "zoom": 18
+  },
+  "Fusion": {
+    "class": "fast_food",
+    "category_class": "fusion",
+    "zoom": 18
+  },
+  "Burgers": {
+    "class": "fast_food",
+    "category_class": "burgers",
+    "zoom": 18
+  },
+  "Creperie": {
+    "class": "fast_food",
+    "category_class": "creperie",
+    "zoom": 18
+  },
+  "Pastries": {
+    "class": "fast_food",
+    "category_class": "pastries",
+    "zoom": 18
+  },
+  "Fondue": {
+    "class": "fast_food",
+    "category_class": "fondue",
+    "zoom": 18
+  },
+  "Brunch": {
+    "class": "fast_food",
+    "category_class": "brunch",
+    "zoom": 18
+  },
+  "Vegan": {
+    "class": "fast_food",
+    "category_class": "vegan",
+    "zoom": 18
+  },
+  "Vegetarian": {
+    "class": "fast_food",
+    "category_class": "vegetarian",
+    "zoom": 18
+  },
+  "Grill": {
+    "class": "fast_food",
+    "category_class": "grill",
+    "zoom": 18
+  },
+  "Jewish/Kosher": {
+    "class": "fast_food",
+    "category_class": "jewish_kosher",
+    "zoom": 18
+  },
+  "Soup": {
+    "class": "fast_food",
+    "category_class": "soup",
+    "zoom": 18
+  },
+  "Lunch": {
+    "class": "fast_food",
+    "category_class": "lunch",
+    "zoom": 18
+  },
+  "Natural/Healthy": {
+    "class": "fast_food",
+    "category_class": "natural_healthy",
+    "zoom": 18
+  },
+  "Organic": {
+    "class": "fast_food",
+    "category_class": "organic",
+    "zoom": 18
+  },
+  "Noodles": {
+    "class": "fast_food",
+    "category_class": "noodles",
+    "zoom": 18
+  },
+  "Automobile Dealership-New Cars": {
+    "class": "car_dealers",
+    "category_class": "automobile_dealership_new_cars",
+    "zoom": 18
+  },
+  "Automobile Dealership-Used Cars": {
+    "class": "car_dealers",
+    "category_class": "automobile_dealership_used_cars",
+    "zoom": 18
+  },
+  "Motorcycle Dealership": {
+    "class": "car_dealers",
+    "category_class": "motorcycle_dealership",
+    "zoom": 18
+  },
+  "Truck-Semi Dealer-Services": {
+    "class": "car_dealers",
+    "category_class": "truck_semi_dealer_services",
+    "zoom": 18
+  },
+  "Truck Dealership": {
+    "class": "car_dealers",
+    "category_class": "truck_dealership",
+    "zoom": 18
+  },
+  "Convenience Store": {
+    "class": "convenience_stores",
+    "category_class": "convenience_store",
+    "zoom": 18
+  },
+  "Religious Place": {
+    "class": "cultural",
+    "category_class": "religious_place",
+    "zoom": 18
+  },
+  "Other Place of Worship": {
+    "class": "cultural",
+    "category_class": "other_place_of_worship",
+    "zoom": 18
+  },
+  "Gurdwara": {
+    "class": "cultural",
+    "category_class": "gurdwara",
+    "zoom": 18
+  },
+  "Church": {
+    "class": "church",
+    "category_class": "church",
+    "zoom": 18
+  },
+  "Dairy Goods": {
+    "class": "dairy_goods",
+    "category_class": "dairy_goods",
+    "zoom": 18
+  },
+  "Distillery": {
+    "class": "distillery",
+    "category_class": "distillery",
+    "zoom": 18
+  },
+  "EV Charging Station": {
+    "class": "electric_vehicle_charging",
+    "category_class": "ev_charging_station",
+    "zoom": 18
+  },
+  "Check Cashing Service-Currency Exchange": {
+    "class": "exchange",
+    "category_class": "check_cashing_service_currency_exchange",
+    "zoom": 18
+  },
+  "Fire Department": {
+    "class": "fire_department",
+    "category_class": "fire_department",
+    "zoom": 18
+  },
+  "Tourist Information": {
+    "class": "information",
+    "category_class": "tourist_information",
+    "zoom": 18
+  },
+  "Garden": {
+    "class": "garden",
+    "category_class": "garden",
+    "zoom": 17
+  },
+  "Men's Apparel": {
+    "class": "apparel",
+    "category_class": "mens_apparel",
+    "zoom": 17
+  },
+  "Women's Apparel": {
+    "class": "apparel",
+    "category_class": "womens_apparel",
+    "zoom": 17
+  },
+  "Children's Apparel": {
+    "class": "apparel",
+    "category_class": "childrens_apparel",
+    "zoom": 17
+  },
+  "Shoes-Footwear": {
+    "class": "apparel",
+    "category_class": "shoes_footwear",
+    "zoom": 17
+  },
+  "Specialty Clothing Store": {
+    "class": "apparel",
+    "category_class": "specialty_clothing_store",
+    "zoom": 17
+  },
+  "Bakery and Baked Goods Store": {
+    "class": "bakery",
+    "category_class": "bakery_and_baked_goods_store",
+    "zoom": 17
+  },
+  "Doughnut Shop": {
+    "class": "bakery",
+    "category_class": "doughnut_shop",
+    "zoom": 17
+  },
+  "Bar or Pub": {
+    "class": "bars",
+    "category_class": "bar_or_pub",
+    "zoom": 17
+  },
+  "Beer Garden": {
+    "class": "bars",
+    "category_class": "beer_garden",
+    "zoom": 17
+  },
+  "Cocktail Lounge": {
+    "class": "bars",
+    "category_class": "cocktail_lounge",
+    "zoom": 17
+  },
+  "BrewPub": {
+    "class": "bars",
+    "category_class": "brewpub",
+    "zoom": 17
+  },
+  "Bus Station": {
+    "class": "bus_station",
+    "category_class": "bus_station",
+    "zoom": 17
+  },
+  "Bus Stop": {
+    "class": "bus_station",
+    "category_class": "bus_stop",
+    "zoom": 17
+  },
+  "Bus Rapid Transit": {
+    "class": "bus_station",
+    "category_class": "bus_rapid_transit",
+    "zoom": 17
+  },
+  "Rental and Leasing": {
+    "class": "car_rental",
+    "category_class": "rental_and_leasing",
+    "zoom": 17
+  },
+  "Rental Car Agency": {
+    "class": "car_rental",
+    "category_class": "rental_car_agency",
+    "zoom": 17
+  },
+  "Truck Wash": {
+    "class": "car_wash",
+    "category_class": "truck_wash",
+    "zoom": 17
+  },
+  "Car Wash-Detailing": {
+    "class": "car_washing",
+    "category_class": "car_wash_detailing",
+    "zoom": 17
+  },
+  "Coffee Shop": {
+    "class": "coffee",
+    "category_class": "coffee_shop",
+    "zoom": 17
+  },
+  "Coffee-Tea": {
+    "class": "coffee",
+    "category_class": "coffee_tea",
+    "zoom": 17
+  },
+  "Tea House": {
+    "class": "coffee",
+    "category_class": "tea_house",
+    "zoom": 17
+  },
+  "Clothing and Accessories": {
+    "class": "apparel",
+    "category_class": "clothing_and_accessories",
+    "zoom": 16
+  },
+  "Bank": {
+    "class": "banks",
+    "category_class": "bank",
+    "zoom": 16
+  },
+  "Money Transferring Service": {
+    "class": "banks",
+    "category_class": "money_transferring_service",
+    "zoom": 16
+  },
+  "Consumer Electronics Store": {
+    "class": "electronics_shop",
+    "category_class": "consumer_electronics_store",
+    "zoom": 16
+  },
+  "Mobile Retailer": {
+    "class": "electronics_shop",
+    "category_class": "mobile_retailer",
+    "zoom": 16
+  },
+  "Mobile Service Center": {
+    "class": "electronics_shop",
+    "category_class": "mobile_service_center",
+    "zoom": 16
+  },
+  "Computer and Software": {
+    "class": "electronics_shop",
+    "category_class": "computer_and_software",
+    "zoom": 16
+  },
+  "Entertainment Electronics": {
+    "class": "electronics_shop",
+    "category_class": "entertainment_electronics",
+    "zoom": 16
+  },
+  "Convention-Exhibition Center": {
+    "class": "business_center",
+    "category_class": "convention_exhibition_center",
+    "zoom": 16
+  },
+  "Hotel or Motel": {
+    "class": "hotels",
+    "category_class": "hotel_or_motel",
+    "zoom": 16
+  },
+  "Hotel": {
+    "class": "hotels",
+    "category_class": "hotel",
+    "zoom": 16
+  },
+  "Lodging": {
+    "class": "hotels",
+    "category_class": "lodging",
+    "zoom": 16
+  },
+  "Hostel": {
+    "class": "hotels",
+    "category_class": "hostel",
+    "zoom": 16
+  },
+  "Guest House": {
+    "class": "hotels",
+    "category_class": "guest_house",
+    "zoom": 16
+  },
+  "Bed and Breakfast": {
+    "class": "hotels",
+    "category_class": "bed_and_breakfast",
+    "zoom": 16
+  },
+  "Theatre, Music and Culture": {
+    "class": "art",
+    "category_class": "theatre_music_and_culture",
+    "zoom": 15
+  },
+  "Performing Arts": {
+    "class": "art",
+    "category_class": "performing_arts",
+    "zoom": 15
+  },
+  "Gallery": {
+    "class": "art",
+    "category_class": "gallery",
+    "zoom": 15
+  },
+  "Aerial Tramway": {
+    "class": "aerial_tramway",
+    "category_class": "aerial_tramway",
+    "zoom": 15
+  },
+  "Ashram": {
+    "class": "ashram",
+    "category_class": "ashram",
+    "zoom": 15
+  },
+  "Campground": {
+    "class": "campground",
+    "category_class": "campground",
+    "zoom": 15
+  },
+  "Campsite": {
+    "class": "campsite",
+    "category_class": "campsite",
+    "zoom": 15
+  },
+  "Rest Area": {
+    "class": "driver_rest_area",
+    "category_class": "rest_area",
+    "zoom": 15
+  },
+  "Complete Rest Area": {
+    "class": "driver_rest_area",
+    "category_class": "complete_rest_area",
+    "zoom": 15
+  },
+  "Parking and Restroom Only Rest Area": {
+    "class": "driver_rest_area",
+    "category_class": "parking_and_restroom_only_rest_area",
+    "zoom": 15
+  },
+  "Parking Only Rest Area": {
+    "class": "driver_rest_area",
+    "category_class": "parking_only_rest_area",
+    "zoom": 15
+  },
+  "Motorway Service Rest Area": {
+    "class": "driver_rest_area",
+    "category_class": "motorway_service_rest_area",
+    "zoom": 15
+  },
+  "Scenic Overlook Rest Area": {
+    "class": "driver_rest_area",
+    "category_class": "scenic_overlook_rest_area",
+    "zoom": 15
+  },
+  "Beach": {
+    "class": "beach",
+    "category_class": "beach",
+    "zoom": 14
+  },
+  "Brewery": {
+    "class": "brewery",
+    "category_class": "brewery",
+    "zoom": 14
+  },
+  "Cemetery": {
+    "class": "cemetry",
+    "category_class": "cemetery",
+    "zoom": 14
+  },
+  "Natural and Geographical": {
+    "class": "forest",
+    "category_class": "natural_and_geographical",
+    "zoom": 14
+  },
+  "Golf Course": {
+    "class": "golf",
+    "category_class": "golf_course",
+    "zoom": 14
+  },
+  "Golf Practice Range": {
+    "class": "golf",
+    "category_class": "golf_practice_range",
+    "zoom": 14
+  },
+  "Amusement Park": {
+    "class": "amusement_park",
+    "category_class": "amusement_park",
+    "zoom": 12
+  },
+  "Aquarium": {
+    "class": "aquarium",
+    "category_class": "aquarium",
+    "zoom": 12
+  },
+  "Public Sports Airport": {
+    "class": "airport",
+    "category_class": "public_sports_airport",
+    "zoom": 11
+  },
+  "Airport": {
+    "class": "airport",
+    "category_class": "airport",
+    "zoom": 11
+  },
+  "Airport Terminal": {
+    "class": "airport",
+    "category_class": "airport_terminal",
+    "zoom": 11
+  },
+  "Airport Cargo": {
+    "class": "airport",
+    "category_class": "airport_cargo",
+    "zoom": 11
+  },
+  "Named Intersection-Chowk": {
+    "class": "generic_location",
+    "category_class": "named_intersection_chowk",
+    "zoom": 14
+  },
+  "Tollbooth": {
+    "class": "generic_location",
+    "category_class": "tollbooth",
+    "zoom": 14
+  },
+  "Cargo Center": {
+    "class": "generic_location",
+    "category_class": "cargo_center",
+    "zoom": 14
+  },
+  "Rail Yard": {
+    "class": "generic_location",
+    "category_class": "rail_yard",
+    "zoom": 14
+  },
+  "Meeting Point": {
+    "class": "generic_location",
+    "category_class": "meeting_point",
+    "zoom": 14
+  },
+  "Building": {
+    "class": "generic_location",
+    "category_class": "building",
+    "zoom": 14
+  },
+  "Residential Area-Building": {
+    "class": "generic_location",
+    "category_class": "residential_area_building",
+    "zoom": 14
+  },
+  "Street or Square": {
+    "class": "generic_location",
+    "category_class": "street_or_square",
+    "zoom": 14
+  },
+  "Food-Beverage Specialty Store": {
+    "class": "groceries",
+    "category_class": "food_beverage_specialty_store",
+    "zoom": 14
+  },
+  "Grocery": {
+    "class": "groceries",
+    "category_class": "grocery",
+    "zoom": 14
+  },
+  "Specialty Food Store": {
+    "class": "groceries",
+    "category_class": "specialty_food_store",
+    "zoom": 14
+  },
+  "Recreation Center": {
+    "class": "gyms",
+    "category_class": "recreation_center",
+    "zoom": 14
+  },
+  "Wellness Center and Services": {
+    "class": "gyms",
+    "category_class": "wellness_center_and_services",
+    "zoom": 14
+  },
+  "Sports Facility-Venue": {
+    "class": "gyms",
+    "category_class": "sports_facility_venue",
+    "zoom": 14
+  },
+  "Highway Exit": {
+    "class": "highway_exit",
+    "category_class": "highway_exit",
+    "zoom": 14
+  },
+  "Ambulance Services": {
+    "class": "hospitals_clinics",
+    "category_class": "ambulance_services",
+    "zoom": 14
+  },
+  "Hospital or Health Care Facility": {
+    "class": "hospitals_clinics",
+    "category_class": "hospital_or_health_care_facility",
+    "zoom": 14
+  },
+  "Dentist-Dental Office": {
+    "class": "hospitals_clinics",
+    "category_class": "dentist_dental_office",
+    "zoom": 14
+  },
+  "Island": {
+    "class": "island",
+    "category_class": "island",
+    "zoom": 14
+  },
+  "Leisure": {
+    "class": "leisure",
+    "category_class": "leisure",
+    "zoom": 14
+  },
+  "Other Library": {
+    "class": "libraries",
+    "category_class": "other_library",
+    "zoom": 14
+  },
+  "Library": {
+    "class": "libraries",
+    "category_class": "library",
+    "zoom": 14
+  },
+  "Wine and Liquor": {
+    "class": "liquor_store",
+    "category_class": "wine_and_liquor",
+    "zoom": 14
+  },
+  "Live Entertainment-Music": {
+    "class": "live_music",
+    "category_class": "live_entertainment_music",
+    "zoom": 14
+  },
+  "Jazz Club": {
+    "class": "live_music",
+    "category_class": "jazz_club",
+    "zoom": 14
+  },
+  "Post Office": {
+    "class": "mail_shipping",
+    "category_class": "post_office",
+    "zoom": 14
+  },
+  "Monorail": {
+    "class": "monorail",
+    "category_class": "monorail",
+    "zoom": 14
+  },
+  "Mosque": {
+    "class": "mosque",
+    "category_class": "mosque",
+    "zoom": 14
+  },
+  "Motel": {
+    "class": "motels",
+    "category_class": "motel",
+    "zoom": 14
+  },
+  "Short-Time Motel": {
+    "class": "motels",
+    "category_class": "short_time_motel",
+    "zoom": 14
+  },
+  "Mountain or Hill": {
+    "class": "mountain_hill",
+    "category_class": "mountain_or_hill",
+    "zoom": 14
+  },
+  "Mountain Passes": {
+    "class": "mountain_hill",
+    "category_class": "mountain_passes",
+    "zoom": 14
+  },
+  "Mountain Peaks": {
+    "class": "mountain_hill",
+    "category_class": "mountain_peaks",
+    "zoom": 14
+  },
+  "Undersea Feature": {
+    "class": "mountain_hill",
+    "category_class": "undersea_feature",
+    "zoom": 14
+  },
+  "Cinema": {
+    "class": "movies",
+    "category_class": "cinema",
+    "zoom": 14
+  },
+  "Museum": {
+    "class": "museums",
+    "category_class": "museum",
+    "zoom": 14
+  },
+  "Science Museum": {
+    "class": "museums",
+    "category_class": "science_museum",
+    "zoom": 14
+  },
+  "Children's Museum": {
+    "class": "museums",
+    "category_class": "childrens_museum",
+    "zoom": 14
+  },
+  "History Museum": {
+    "class": "museums",
+    "category_class": "history_museum",
+    "zoom": 14
+  },
+  "Art Museum": {
+    "class": "museums",
+    "category_class": "art_museum",
+    "zoom": 14
+  },
+  "Nightlife-Entertainment": {
+    "class": "nightlife",
+    "category_class": "nightlife_entertainment",
+    "zoom": 14
+  },
+  "Night Club": {
+    "class": "nightlife",
+    "category_class": "night_club",
+    "zoom": 14
+  },
+  "Dancing": {
+    "class": "nightlife",
+    "category_class": "dancing",
+    "zoom": 14
+  },
+  "Karaoke": {
+    "class": "nightlife",
+    "category_class": "karaoke",
+    "zoom": 14
+  },
+  "Billiards-Pool Hall": {
+    "class": "nightlife",
+    "category_class": "billiards_pool_hall",
+    "zoom": 14
+  },
+  "Adult Entertainment": {
+    "class": "nightlife",
+    "category_class": "adult_entertainment",
+    "zoom": 14
+  },
+  "Gambling-Lottery-Betting": {
+    "class": "nightlife",
+    "category_class": "gambling_lottery_betting",
+    "zoom": 14
+  },
+  "Casino": {
+    "class": "nightlife",
+    "category_class": "casino",
+    "zoom": 14
+  },
+  "Lottery Booth": {
+    "class": "nightlife",
+    "category_class": "lottery_booth",
+    "zoom": 14
+  },
+  "Truck Parking": {
+    "class": "parking",
+    "category_class": "truck_parking",
+    "zoom": 14
+  },
+  "Truck Stop-Plaza": {
+    "class": "parking",
+    "category_class": "truck_stop_plaza",
+    "zoom": 14
+  },
+  "Parking": {
+    "class": "parking",
+    "category_class": "parking",
+    "zoom": 14
+  },
+  "Parking Garage-Parking House": {
+    "class": "parking",
+    "category_class": "parking_garage_parking_house",
+    "zoom": 14
+  },
+  "Parking Lot": {
+    "class": "parking",
+    "category_class": "parking_lot",
+    "zoom": 14
+  },
+  "Park and Ride": {
+    "class": "parking",
+    "category_class": "park_and_ride",
+    "zoom": 14
+  },
+  "Holiday Park": {
+    "class": "parks",
+    "category_class": "holiday_park",
+    "zoom": 14
+  },
+  "Outdoor-Recreation": {
+    "class": "parks",
+    "category_class": "outdoor_recreation",
+    "zoom": 14
+  },
+  "Park-Recreation Area": {
+    "class": "parks",
+    "category_class": "park_recreation_area",
+    "zoom": 14
+  },
+  "RV Parks": {
+    "class": "parks",
+    "category_class": "rv_parks",
+    "zoom": 14
+  },
+  "Drugstore or Pharmacy": {
+    "class": "pharmacies",
+    "category_class": "drugstore_or_pharmacy",
+    "zoom": 14
+  },
+  "Drugstore": {
+    "class": "pharmacies",
+    "category_class": "drugstore",
+    "zoom": 14
+  },
+  "Pharmacy": {
+    "class": "pharmacies",
+    "category_class": "pharmacy",
+    "zoom": 14
+  },
+  "Named Place": {
+    "class": "photo_attraction",
+    "category_class": "named_place",
+    "zoom": 14
+  },
+  "Landmark-Attraction": {
+    "class": "photo_attractions",
+    "category_class": "landmark_attraction",
+    "zoom": 14
+  },
+  "Scenic Point": {
+    "class": "photo_attractions",
+    "category_class": "scenic_point",
+    "zoom": 14
+  },
+  "Police Station": {
+    "class": "police",
+    "category_class": "police_station",
+    "zoom": 14
+  },
+  "Police Services-Security": {
+    "class": "police",
+    "category_class": "police_services_security",
+    "zoom": 14
+  },
+  "Public Administration": {
+    "class": "public_building",
+    "category_class": "public_administration",
+    "zoom": 14
+  },
+  "Government or Community Facility": {
+    "class": "public_building",
+    "category_class": "government_or_community_facility",
+    "zoom": 14
+  },
+  "City Hall": {
+    "class": "public_building",
+    "category_class": "city_hall",
+    "zoom": 14
+  },
+  "Embassy": {
+    "class": "public_building",
+    "category_class": "embassy",
+    "zoom": 14
+  },
+  "County Council": {
+    "class": "public_building",
+    "category_class": "county_council",
+    "zoom": 14
+  },
+  "Civic-Community Center": {
+    "class": "public_building",
+    "category_class": "civic_community_center",
+    "zoom": 14
+  },
+  "Court House": {
+    "class": "public_building",
+    "category_class": "court_house",
+    "zoom": 14
+  },
+  "Government Office": {
+    "class": "public_building",
+    "category_class": "government_office",
+    "zoom": 14
+  },
+  "City, Town or Village": {
+    "class": "public_building",
+    "category_class": "city_town_or_village",
+    "zoom": 14
+  },
+  "Public Transit Access": {
+    "class": "public_transport",
+    "category_class": "public_transit_access",
+    "zoom": 14
+  },
+  "Transportation Service": {
+    "class": "public_transport",
+    "category_class": "transportation_service",
+    "zoom": 14
+  },
+  "Local Transit": {
+    "class": "public_transport",
+    "category_class": "local_transit",
+    "zoom": 14
+  },
+  "Ranger Station": {
+    "class": "ranger_station",
+    "category_class": "ranger_station",
+    "zoom": 14
+  },
+  "Restaurant": {
+    "class": "restaurants",
+    "category_class": "restaurant",
+    "zoom": 14
+  },
+  "Fine Dining": {
+    "class": "restaurants",
+    "category_class": "fine_dining",
+    "zoom": 14
+  },
+  "Steak House": {
+    "class": "restaurants",
+    "category_class": "steak_house",
+    "zoom": 14
+  },
+  "Seafood": {
+    "class": "restaurants",
+    "category_class": "seafood",
+    "zoom": 14
+  },
+  "Dinner": {
+    "class": "restaurants",
+    "category_class": "dinner",
+    "zoom": 14
+  },
+  "Public Restroom-Toilets": {
+    "class": "restrooms",
+    "category_class": "public_restroom_toilets",
+    "zoom": 14
+  },
+  "Kindergarten and Childcare": {
+    "class": "schools_daycare",
+    "category_class": "kindergarten_and_childcare",
+    "zoom": 14
+  },
+  "Education Facility": {
+    "class": "schools_daycare",
+    "category_class": "education_facility",
+    "zoom": 14
+  },
+  "School": {
+    "class": "schools_daycare",
+    "category_class": "school",
+    "zoom": 14
+  },
+  "Specialty Store": {
+    "class": "shopping_center",
+    "category_class": "specialty_store",
+    "zoom": 14
+  },
+  "Hardware, House and Garden": {
+    "class": "shopping_center",
+    "category_class": "hardware_house_and_garden",
+    "zoom": 14
+  },
+  "Home Improvement-Hardware Store": {
+    "class": "shopping_center",
+    "category_class": "home_improvement_hardware_store",
+    "zoom": 14
+  },
+  "Home Specialty Store": {
+    "class": "shopping_center",
+    "category_class": "home_specialty_store",
+    "zoom": 14
+  },
+  "Floor and Carpet": {
+    "class": "shopping_center",
+    "category_class": "floor_and_carpet",
+    "zoom": 14
+  },
+  "Furniture Store": {
+    "class": "shopping_center",
+    "category_class": "furniture_store",
+    "zoom": 14
+  },
+  "Garden Center": {
+    "class": "shopping_center",
+    "category_class": "garden_center",
+    "zoom": 14
+  },
+  "Glass and Window": {
+    "class": "shopping_center",
+    "category_class": "glass_and_window",
+    "zoom": 14
+  },
+  "Lumber": {
+    "class": "shopping_center",
+    "category_class": "lumber",
+    "zoom": 14
+  },
+  "Major Appliance": {
+    "class": "shopping_center",
+    "category_class": "major_appliance",
+    "zoom": 14
+  },
+  "Power Equipment Dealer": {
+    "class": "shopping_center",
+    "category_class": "power_equipment_dealer",
+    "zoom": 14
+  },
+  "Paint Store": {
+    "class": "shopping_center",
+    "category_class": "paint_store",
+    "zoom": 14
+  },
+  "Other Bookshop": {
+    "class": "shopping_center",
+    "category_class": "other_bookshop",
+    "zoom": 14
+  },
+  "Bookstore": {
+    "class": "shopping_center",
+    "category_class": "bookstore",
+    "zoom": 14
+  },
+  "Consumer Goods": {
+    "class": "shopping_center",
+    "category_class": "consumer_goods",
+    "zoom": 14
+  },
+  "Sporting Goods Store": {
+    "class": "shopping_center",
+    "category_class": "sporting_goods_store",
+    "zoom": 14
+  },
+  "Office Supply and Services Store": {
+    "class": "shopping_center",
+    "category_class": "office_supply_and_services_store",
+    "zoom": 14
+  },
+  "Pet Supply": {
+    "class": "shopping_center",
+    "category_class": "pet_supply",
+    "zoom": 14
+  },
+  "Warehouse-Wholesale Store": {
+    "class": "shopping_centers",
+    "category_class": "warehouse_wholesale_store",
+    "zoom": 14
+  },
+  "General Merchandise": {
+    "class": "shopping_center",
+    "category_class": "general_merchandise",
+    "zoom": 14
+  },
+  "Discount Store": {
+    "class": "shopping_center",
+    "category_class": "discount_store",
+    "zoom": 14
+  },
+  "Flowers and Jewelry": {
+    "class": "shopping_center",
+    "category_class": "flowers_and_jewelry",
+    "zoom": 14
+  },
+  "Variety Store": {
+    "class": "shopping_center",
+    "category_class": "variety_store",
+    "zoom": 14
+  },
+  "Gift, Antique and Art": {
+    "class": "shopping_center",
+    "category_class": "gift_antique_and_art",
+    "zoom": 14
+  },
+  "Record, CD and Video": {
+    "class": "shopping_center",
+    "category_class": "record_cd_and_video",
+    "zoom": 14
+  },
+  "Video and Game Rental": {
+    "class": "shopping_center",
+    "category_class": "video_and_game_rental",
+    "zoom": 14
+  },
+  "Cigar and Tobacco Shop": {
+    "class": "shopping_center",
+    "category_class": "cigar_and_tobacco_shop",
+    "zoom": 14
+  },
+  "Vaping Store": {
+    "class": "shopping_center",
+    "category_class": "vaping_store",
+    "zoom": 14
+  },
+  "Market": {
+    "class": "shopping_center",
+    "category_class": "market",
+    "zoom": 14
+  },
+  "Motorcycle Accessories": {
+    "class": "shopping_center",
+    "category_class": "motorcycle_accessories",
+    "zoom": 14
+  },
+  "Non-Store Retailers": {
+    "class": "shopping_center",
+    "category_class": "non_store_retailers",
+    "zoom": 14
+  },
+  "Pawnshop": {
+    "class": "shopping_center",
+    "category_class": "pawnshop",
+    "zoom": 14
+  },
+  "Used-Second Hand Merchandise Stores": {
+    "class": "shopping_center",
+    "category_class": "used_second_hand_merchandise_stores",
+    "zoom": 14
+  },
+  "Adult Shop": {
+    "class": "shopping_center",
+    "category_class": "adult_shop",
+    "zoom": 14
+  },
+  "Arts and Crafts Supplies": {
+    "class": "shopping_center",
+    "category_class": "arts_and_crafts_supplies",
+    "zoom": 14
+  },
+  "Florist": {
+    "class": "shopping_center",
+    "category_class": "florist",
+    "zoom": 14
+  },
+  "Jeweler": {
+    "class": "shopping_center",
+    "category_class": "jeweler",
+    "zoom": 14
+  },
+  "Toy Store": {
+    "class": "shopping_center",
+    "category_class": "toy_store",
+    "zoom": 14
+  },
+  "Hunting-Fishing Shop": {
+    "class": "shopping_center",
+    "category_class": "hunting_fishing_shop",
+    "zoom": 14
+  },
+  "Running-Walking Shop": {
+    "class": "shopping_center",
+    "category_class": "running_walking_shop",
+    "zoom": 14
+  },
+  "Skate Shop": {
+    "class": "shopping_center",
+    "category_class": "skate_shop",
+    "zoom": 14
+  },
+  "Ski Shop": {
+    "class": "shopping_center",
+    "category_class": "ski_shop",
+    "zoom": 14
+  },
+  "Snowboard Shop": {
+    "class": "shopping_center",
+    "category_class": "snowboard_shop",
+    "zoom": 14
+  },
+  "Surf Shop": {
+    "class": "shopping_center",
+    "category_class": "surf_shop",
+    "zoom": 14
+  },
+  "BMX Shop": {
+    "class": "shopping_center",
+    "category_class": "bmx_shop",
+    "zoom": 14
+  },
+  "Camping-Hiking Shop": {
+    "class": "shopping_center",
+    "category_class": "camping_hiking_shop",
+    "zoom": 14
+  },
+  "Canoe-Kayak Shop": {
+    "class": "shopping_center",
+    "category_class": "canoe_kayak_shop",
+    "zoom": 14
+  },
+  "Cross Country Ski Shop": {
+    "class": "shopping_center",
+    "category_class": "cross_country_ski_shop",
+    "zoom": 14
+  },
+  "Tack Shop": {
+    "class": "shopping_center",
+    "category_class": "tack_shop",
+    "zoom": 14
+  },
+  "Shopping Mall": {
+    "class": "shopping_centers",
+    "category_class": "shopping_mall",
+    "zoom": 14
+  },
+  "Department Store": {
+    "class": "shopping_centers",
+    "category_class": "department_store",
+    "zoom": 14
+  },
+  "Ski Lift": {
+    "class": "ski",
+    "category_class": "ski_lift",
+    "zoom": 14
+  },
+  "Ski Resort": {
+    "class": "ski",
+    "category_class": "ski_resort",
+    "zoom": 14
+  },
+  "Sports Field": {
+    "class": "sport_field",
+    "category_class": "sports_field",
+    "zoom": 14
+  },
+  "Sports Complex-Stadium": {
+    "class": "sport_field",
+    "category_class": "sports_complex_stadium",
+    "zoom": 14
+  },
+  "Ice Skating Rink": {
+    "class": "sport_field",
+    "category_class": "ice_skating_rink",
+    "zoom": 14
+  },
+  "Swimming Pool": {
+    "class": "sport_field",
+    "category_class": "swimming_pool",
+    "zoom": 14
+  },
+  "Tennis Court": {
+    "class": "sport_field",
+    "category_class": "tennis_court",
+    "zoom": 14
+  },
+  "Bowling Center": {
+    "class": "sport_field",
+    "category_class": "bowling_center",
+    "zoom": 14
+  },
+  "Indoor Ski": {
+    "class": "sport_field",
+    "category_class": "indoor_ski",
+    "zoom": 14
+  },
+  "Hockey": {
+    "class": "sport_field",
+    "category_class": "hockey",
+    "zoom": 14
+  },
+  "Racquetball Court": {
+    "class": "sport_field",
+    "category_class": "racquetball_court",
+    "zoom": 14
+  },
+  "Shooting Range": {
+    "class": "sport_field",
+    "category_class": "shooting_range",
+    "zoom": 14
+  },
+  "Soccer Club": {
+    "class": "sport_field",
+    "category_class": "soccer_club",
+    "zoom": 14
+  },
+  "Squash Court": {
+    "class": "sport_field",
+    "category_class": "squash_court",
+    "zoom": 14
+  },
+  "Fitness-Health Club": {
+    "class": "sport_field",
+    "category_class": "fitness_health_club",
+    "zoom": 14
+  },
+  "Indoor Sports": {
+    "class": "sport_field",
+    "category_class": "indoor_sports",
+    "zoom": 14
+  },
+  "Race Track": {
+    "class": "sport_field",
+    "category_class": "race_track",
+    "zoom": 14
+  },
+  "Sporting Instruction and Camps": {
+    "class": "sport_field",
+    "category_class": "sporting_instruction_and_camps",
+    "zoom": 14
+  },
+  "Sports Activities": {
+    "class": "sport_field",
+    "category_class": "sports_activities",
+    "zoom": 14
+  },
+  "Basketball": {
+    "class": "sport_field",
+    "category_class": "basketball",
+    "zoom": 14
+  },
+  "Badminton": {
+    "class": "sport_field",
+    "category_class": "badminton",
+    "zoom": 14
+  },
+  "Rugby": {
+    "class": "sport_field",
+    "category_class": "rugby",
+    "zoom": 14
+  },
+  "Diving Center": {
+    "class": "sport_field",
+    "category_class": "diving_center",
+    "zoom": 14
+  },
+  "Bike Park": {
+    "class": "sport_field",
+    "category_class": "bike_park",
+    "zoom": 14
+  },
+  "BMX Track": {
+    "class": "sport_field",
+    "category_class": "bmx_track",
+    "zoom": 14
+  },
+  "Running Track": {
+    "class": "sport_field",
+    "category_class": "running_track",
+    "zoom": 14
+  },
+  "Underground Train-Subway": {
+    "class": "subway_station",
+    "category_class": "underground_train_subway",
+    "zoom": 14
+  },
+  "Sweet Shop": {
+    "class": "sweet_shop",
+    "category_class": "sweet_shop",
+    "zoom": 14
+  },
+  "Synagogue": {
+    "class": "synagogue",
+    "category_class": "synagogue",
+    "zoom": 14
+  },
+  "Taxi Stand": {
+    "class": "taxi",
+    "category_class": "taxi_stand",
+    "zoom": 14
+  },
+  "Temple": {
+    "class": "temple",
+    "category_class": "temple",
+    "zoom": 14
+  },
+  "Tourist Attraction": {
+    "class": "tourist_attractions",
+    "category_class": "tourist_attraction",
+    "zoom": 14
+  },
+  "Historical Monument": {
+    "class": "tourist_attractions",
+    "category_class": "historical_monument",
+    "zoom": 14
+  },
+  "Off Road Trailhead": {
+    "class": "trailhead",
+    "category_class": "off_road_trailhead",
+    "zoom": 14
+  },
+  "Trailhead": {
+    "class": "trailhead",
+    "category_class": "trailhead",
+    "zoom": 14
+  },
+  "Off-Road Vehicle Area": {
+    "class": "trailhead",
+    "category_class": "off_road_vehicle_area",
+    "zoom": 14
+  },
+  "Train Station": {
+    "class": "train_station",
+    "category_class": "train_station",
+    "zoom": 14
+  },
+  "Commuter Rail Station": {
+    "class": "train_station",
+    "category_class": "commuter_rail_station",
+    "zoom": 14
+  },
+  "Commuter Train": {
+    "class": "train_station",
+    "category_class": "commuter_train",
+    "zoom": 14
+  },
+  "Lightrail": {
+    "class": "train_station",
+    "category_class": "lightrail",
+    "zoom": 14
+  },
+  "Inclined Rail": {
+    "class": "train_station",
+    "category_class": "inclined_rail",
+    "zoom": 14
+  },
+  "Travel Agent-Ticketing": {
+    "class": "travel_ticket",
+    "category_class": "travel_agent_ticketing",
+    "zoom": 14
+  },
+  "Higher Education": {
+    "class": "university",
+    "category_class": "higher_education",
+    "zoom": 14
+  },
+  "Training and Development": {
+    "class": "university",
+    "category_class": "training_and_development",
+    "zoom": 14
+  },
+  "Coaching Institute": {
+    "class": "university",
+    "category_class": "coaching_institute",
+    "zoom": 14
+  },
+  "Fine Arts": {
+    "class": "university",
+    "category_class": "fine_arts",
+    "zoom": 14
+  },
+  "Language Studies": {
+    "class": "university",
+    "category_class": "language_studies",
+    "zoom": 14
+  },
+  "Marina": {
+    "class": "water_body",
+    "category_class": "marina",
+    "zoom": 14
+  },
+  "Water Park": {
+    "class": "water_park",
+    "category_class": "water_park",
+    "zoom": 14
+  },
+  "Waterfall": {
+    "class": "waterfall",
+    "category_class": "waterfall",
+    "zoom": 14
+  },
+  "Wild Animal Park": {
+    "class": "wild_animals",
+    "category_class": "wild_animal_park",
+    "zoom": 14
+  },
+  "Wildlife Refuge": {
+    "class": "wild_animals",
+    "category_class": "wildlife_refuge",
+    "zoom": 14
+  },
+  "Animal Park": {
+    "class": "wild_animals",
+    "category_class": "animal_park",
+    "zoom": 14
+  },
+  "Winery": {
+    "class": "winery",
+    "category_class": "winery",
+    "zoom": 14
+  },
+  "Zoo": {
+    "class": "zoo",
+    "category_class": "zoo",
+    "zoom": 14
+  }
+}
