@@ -3,7 +3,7 @@
 ### General prerequisites
 
 * At least 32GB of RAM
-* At least 200GB of free disk space minimum
+* At least 200GB of free disk space
 * python 3.6+
 * *pip* for python3
 * *protobuf* python package (`pip install protobuf`)
