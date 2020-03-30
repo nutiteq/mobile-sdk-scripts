@@ -43,13 +43,11 @@ def main():
   with io.open(args.template, 'rt', encoding='utf-8') as packagesFile:
     packagesTemplate = json.loads(packagesFile.read())
   packagesFilter = args.packages.split(',') if args.packages is not None else None
+  packagesList = [package for package in packagesTemplate['packages'] if packagesFilter is None or package['id'] in packagesFilter]
 
-  filteredPackages = [package for package in packagesTemplate['packages'] if packagesFilter is None or package['id'] in packagesFilter]
-  for packageBatch in [filteredPackages[n:n+PACKAGE_BATCH_SIZE] for n in range(0, len(filteredPackages), PACKAGE_BATCH_SIZE)]:
-    config = { 'extracts': [], 'directory': args.output }
-    for package in packageBatch:
-      if packagesFilter is None or package['id'] in packagesFilter:
-        config['extracts'].append(calculateExtract(package))
+  os.makedirs(args.output, exist_ok=True)
+  for packageBatch in [packagesList[n:n+PACKAGE_BATCH_SIZE] for n in range(0, len(packagesList), PACKAGE_BATCH_SIZE)]:
+    config = { 'extracts': [calculateExtract(package) for package in packageBatch], 'directory': args.output }
     tempFile = tempfile.NamedTemporaryFile('wt', encoding='utf-8', suffix='.json', delete=False)
     try:
       tempFile.write(json.dumps(config))
