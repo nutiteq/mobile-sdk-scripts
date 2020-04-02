@@ -27,7 +27,6 @@ def importGeocodingDatabase(outputFileName, wofFileName, addressesFileName, high
       db.execute("PRAGMA page_size=4096")
       db.execute("PRAGMA encoding='UTF-8'")
       db.execute("PRAGMA synchronous=OFF")
-      db.execute("PRAGMA temp_store=MEMORY")
 
       importer = nutigeodb.osmimporter.OSMImporter(db, wofDb, addressesFileName, highwaysFileName, buildingsFileName, dataDir, clipBounds, **kwargs)
       importer.importPelias()
