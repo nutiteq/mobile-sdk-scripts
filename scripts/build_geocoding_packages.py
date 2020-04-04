@@ -16,6 +16,9 @@ DEFAULT_PACKAGE_URL_TEMPLATE = 'FULL_PACKAGE_URL/{version}/{id}.nutigeodb?appTok
 # Default package version
 DEFAULT_PACKAGE_VERSION = 1
 
+# The number of parallel processes
+MAX_WORKERS = 4 # Optimal in case of 32GB/48GB RAM
+
 def importGeocodingDatabase(outputFileName, wofFileName, addressesFileName, highwaysFileName, buildingsFileName, dataDir, clipBounds, **kwargs):
   if os.path.exists(outputFileName):
     os.remove(outputFileName)
@@ -23,14 +26,18 @@ def importGeocodingDatabase(outputFileName, wofFileName, addressesFileName, high
   with closing(sqlite3.connect('file:%s?mode=ro' % wofFileName, uri=True)) as wofDb:
     with closing(sqlite3.connect(outputFileName)) as db:
       db.isolation_level = None
-      db.execute("PRAGMA cache_size=4096")
+      db.execute("PRAGMA locking_mode=EXCLUSIVE")
+      db.execute("PRAGMA synchronous=OFF")
       db.execute("PRAGMA page_size=4096")
       db.execute("PRAGMA encoding='UTF-8'")
-      db.execute("PRAGMA synchronous=OFF")
 
       importer = nutigeodb.osmimporter.OSMImporter(db, wofDb, addressesFileName, highwaysFileName, buildingsFileName, dataDir, clipBounds, **kwargs)
       importer.importPelias()
       importer.convertDatabase()
+
+  with closing(sqlite3.connect(outputFileName)) as db:
+    db.execute("VACUUM")
+    db.execute("ANALYZE")
 
 def processPackage(package, inputDir, wofFileName, dataDir, outputDir, **kwargs):
   outputFileName    = '%s/%s.nutigeodb'        % (outputDir, package['id'])
@@ -80,7 +87,7 @@ def main():
 
   dataDir = '%s/../data' % os.path.realpath(os.path.dirname(__file__))
   os.makedirs(args.output, exist_ok=True)
-  with concurrent.futures.ProcessPoolExecutor() as executor:
+  with concurrent.futures.ProcessPoolExecutor(max_workers=MAX_WORKERS) as executor:
     results = { package['id']: executor.submit(processPackage, package, args.input, args.wof, dataDir, args.output, importIds=args.importIds, importPostcodes=args.importPostcodes, importCategories=args.importCategories, importWOF=args.importWOF) for package in packagesList }
 
   outputFileNames = {}
