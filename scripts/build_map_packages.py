@@ -281,10 +281,14 @@ def extractTiles(packageId, tileMask, worldFileName, outputFileName, maxZoom=14,
     # Open output file and prepare database
     if os.path.exists(outputFileName):
       os.remove(outputFileName)
+
     with closing(sqlite3.connect(outputFileName)) as outputDb:
+      outputDb.execute("PRAGMA locking_mode=EXCLUSIVE")
+      outputDb.execute("PRAGMA synchronous=OFF")
+      outputDb.execute("PRAGMA page_size=512")
+      outputDb.execute("PRAGMA encoding='UTF-8'")
+
       outputCursor = outputDb.cursor()
-      outputCursor.execute("PRAGMA synchronous=OFF")
-      outputCursor.execute("PRAGMA page_size=512")
       outputCursor.execute("CREATE TABLE metadata (name TEXT, value TEXT)")
       outputCursor.execute("CREATE TABLE tiles (zoom_level INTEGER, tile_column INTEGER, tile_row INTEGER, tile_data BLOB)")
       outputCursor.execute("INSERT INTO metadata(name, value) VALUES('name', ?)", (packageId,))
@@ -328,14 +332,19 @@ def extractTiles(packageId, tileMask, worldFileName, outputFileName, maxZoom=14,
 
       # Close output file
       outputCursor.execute("CREATE UNIQUE INDEX tiles_index ON tiles (zoom_level, tile_column, tile_row)");
-      outputCursor.execute("VACUUM")
+      outputCursor.close()
       outputDb.commit()
+
+  # Vacuum the database
+  with closing(sqlite3.connect(outputFileName)) as outputDb:
+    outputDb.execute("VACUUM")
 
 def optimizeTiles(outputFileName):
   # Drop tiles that are not needed
   with closing(sqlite3.connect(outputFileName)) as outputDb:
-    outputDb.cursor().execute("PRAGMA synchronous=OFF")
-    outputDb.cursor().execute("CREATE UNIQUE INDEX IF NOT EXISTS tiles_index ON tiles (zoom_level, tile_column, tile_row)");
+    outputDb.execute("PRAGMA locking_mode=EXCLUSIVE")
+    outputDb.execute("PRAGMA synchronous=OFF")
+    outputDb.execute("CREATE UNIQUE INDEX IF NOT EXISTS tiles_index ON tiles (zoom_level, tile_column, tile_row)");
 
     # Harvest tiles
     cursor1 = outputDb.cursor()
@@ -349,12 +358,13 @@ def optimizeTiles(outputFileName):
         cursor2.execute("SELECT zoom_level FROM tiles WHERE zoom_level=?+1 AND (tile_column BETWEEN ?*2 AND ?*2+1) AND (tile_row BETWEEN ?*2 AND ?*2+1)", (zoom, x, x, y, y))
         if not cursor2.fetchone():
           cursor2.execute("DELETE FROM tiles WHERE zoom_level=? AND tile_column=? AND tile_row=?", (zoom, x, y))
+    cursor2.close()
+    cursor1.close()
     outputDb.commit()
 
   # Vacuum
   with closing(sqlite3.connect(outputFileName)) as outputDb:
-    outputDb.cursor().execute("VACUUM")
-    outputDb.commit()
+    outputDb.execute("VACUUM")
 
 def processPackage(package, outputDir, inputFileName, zdictDir=None):
   outputFileName = '%s/%s.mbtiles' % (outputDir, package['id'])

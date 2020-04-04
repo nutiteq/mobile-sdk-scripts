@@ -901,5 +901,3 @@ class OSMImporter(object):
     cursor.close()
 
     self.db.commit()
-    self.db.execute("VACUUM")
-    self.db.execute("ANALYZE")

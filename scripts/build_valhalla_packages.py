@@ -166,10 +166,14 @@ def loadZDict(packageId, zdictDir):
 def extractTiles(packageId, tileMask, outputFileName, valhallaTileDir, zdict=None):
   if os.path.exists(outputFileName):
     os.remove(outputFileName)
+
   with closing(sqlite3.connect(outputFileName)) as outputDb:
+    outputDb.execute("PRAGMA locking_mode=EXCLUSIVE")
+    outputDb.execute("PRAGMA synchronous=OFF")
+    outputDb.execute("PRAGMA page_size=512")
+    outputDb.execute("PRAGMA encoding='UTF-8'")
+
     cursor = outputDb.cursor();
-    cursor.execute("PRAGMA synchronous=OFF")
-    cursor.execute("PRAGMA page_size=512")
     cursor.execute("CREATE TABLE metadata (name TEXT, value TEXT)");
     cursor.execute("CREATE TABLE tiles (zoom_level INTEGER, tile_column INTEGER, tile_row INTEGER, tile_data BLOB)");
     cursor.execute("INSERT INTO metadata(name, value) VALUES('name', ?)", (packageId,))
@@ -191,8 +195,11 @@ def extractTiles(packageId, tileMask, outputFileName, valhallaTileDir, zdict=Non
         print('Warning: File %s does not exist!' % file)
 
     cursor.execute("CREATE UNIQUE INDEX tiles_index ON tiles (zoom_level, tile_column, tile_row)");
-    cursor.execute("VACUUM")
+    cursor.close()
     outputDb.commit()
+
+  with closing(sqlite3.connect(outputFileName)) as outputDb:
+    outputDb.execute("VACUUM")
 
 def processPackage(package, outputDir, tilesDir, zdictDir=None):
   outputFileName = '%s/%s.vtiles' % (outputDir, package['id'])
