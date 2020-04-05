@@ -93,13 +93,17 @@ def mergeTiles(worldFileName, poiFileName, outputFileName, iterConfig, zcompress
 
   # Open world input file, POI file
   with closing(sqlite3.connect('file:%s?mode=ro' % worldFileName, uri=True)) as worldDb:
+    worldCursor = worldDb.cursor()
     with closing(sqlite3.connect('file:%s?mode=ro' % poiFileName, uri=True)) as poiDb:
+      poiCursor = poiDb.cursor()
       with closing(sqlite3.connect(outputFileName)) as outputDb:
-        worldCursor = worldDb.cursor()
-        poiCursor = poiDb.cursor()
+        outputDb.execute("PRAGMA locking_mode=EXCLUSIVE")
+        outputDb.execute("PRAGMA synchronous=OFF")
+        outputDb.execute("PRAGMA page_size=512")
+        outputDb.execute("PRAGMA encoding='UTF-8'")
 
+        # Create tiles table
         outputCursor = outputDb.cursor()
-        outputCursor.execute("PRAGMA synchronous=OFF")
         outputCursor.execute("CREATE TABLE tiles (zoom_level INTEGER, tile_column INTEGER, tile_row INTEGER, tile_data BLOB)")
 
         # Copy encryption info (we assume all packages share this)
