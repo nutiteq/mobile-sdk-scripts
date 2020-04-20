@@ -163,17 +163,70 @@ def loadZDict(packageId, zdictDir):
   print('Warning: Could not find dictionary for package %s!' % packageId)
   return None
 
-def extractTiles(packageId, tileMask, outputFileName, valhallaTileDir, zdict=None):
+
+valhalla_tiles = [{'level': 2, 'size': 0.25}, {'level': 1, 'size': 1.0}, {'level': 0, 'size': 4.0}]
+LEVEL_BITS = 3
+TILE_INDEX_BITS = 22
+ID_INDEX_BITS = 21
+LEVEL_MASK = (2**LEVEL_BITS) - 1
+TILE_INDEX_MASK = (2**TILE_INDEX_BITS) - 1
+ID_INDEX_MASK = (2**ID_INDEX_BITS) - 1
+INVALID_ID = (ID_INDEX_MASK << (TILE_INDEX_BITS + LEVEL_BITS)) | (TILE_INDEX_MASK << LEVEL_BITS) | LEVEL_MASK
+
+def get_tile_level(id):
+  return id & LEVEL_MASK
+
+def get_tile_index(id):
+  return (id >> LEVEL_BITS) & TILE_INDEX_MASK
+
+def get_index(id):
+  return (id >> (LEVEL_BITS + TILE_INDEX_BITS)) & ID_INDEX_MASK
+
+def tiles_for_bounding_box(left, bottom, right, top):
+  #if this is crossing the anti meridian split it up and combine
+  if left > right:
+    east = tiles_for_bounding_box(left, bottom, 180.0, top)
+    west = tiles_for_bounding_box(-180.0, bottom, right, top)
+    return east + west
+  #move these so we can compute percentages
+  left += 180
+  right += 180
+  bottom += 90
+  top += 90
+  tiles = []
+  #for each size of tile
+  for tile_set in valhalla_tiles:
+    #for each column
+    for x in range(int(left/tile_set['size']), int(right/tile_set['size']) + 1):
+      #for each row
+      for y in range(int(bottom/tile_set['size']), int(top/tile_set['size']) + 1):
+        #give back the level and the tile index
+        # value = int(y * (360.0/tile_set['size']) + x)
+        # tiles.append((tile_set['level'], int(value / 1000), value - int(value / 1000)*1000))
+        tiles.append((x, y, tile_set['level']))
+  return tiles
+
+def get_tile_id(tile_level, lat, lon):
+  level = filter(lambda x: x['level'] == tile_level, valhalla_tiles)[0]
+  width = int(360 / level['size'])
+  return int((lat + 90) / level['size']) * width + int((lon + 180 ) / level['size'])
+
+def get_ll(id):
+  tile_level = get_tile_level(id)
+  tile_index = get_tile_index(id)
+  level = filter(lambda x: x['level'] == tile_level, valhalla_tiles)[0]
+  width = int(360 / level['size'])
+  height = int(180 / level['size'])
+  return int(tile_index / width) * level['size'] - 90, (tile_index % width) * level['size'] - 180
+  
+
+def extractTiles(packageId, bbox, outputFileName, valhallaTileDir, zdict=None):
   if os.path.exists(outputFileName):
     os.remove(outputFileName)
-
   with closing(sqlite3.connect(outputFileName)) as outputDb:
-    outputDb.execute("PRAGMA locking_mode=EXCLUSIVE")
-    outputDb.execute("PRAGMA synchronous=OFF")
-    outputDb.execute("PRAGMA page_size=512")
-    outputDb.execute("PRAGMA encoding='UTF-8'")
-
     cursor = outputDb.cursor();
+    cursor.execute("PRAGMA synchronous=OFF")
+    cursor.execute("PRAGMA page_size=512")
     cursor.execute("CREATE TABLE metadata (name TEXT, value TEXT)");
     cursor.execute("CREATE TABLE tiles (zoom_level INTEGER, tile_column INTEGER, tile_row INTEGER, tile_data BLOB)");
     cursor.execute("INSERT INTO metadata(name, value) VALUES('name', ?)", (packageId,))
@@ -184,7 +237,7 @@ def extractTiles(packageId, tileMask, outputFileName, valhallaTileDir, zdict=Non
     if zdict is not None:
       cursor.execute("INSERT INTO metadata(name, value) VALUES('shared_zlib_dict', ?)", (bytes(zdict),))
 
-    vTiles = calculateValhallaTilesFromTileMask(tileMask)
+    vTiles = tiles_for_bounding_box(bbox[0], bbox[1], bbox[2], bbox[3])
     for vTile in vTiles:
       file = os.path.join(valhallaTileDir, valhallaTilePath(vTile))
       if os.path.isfile(file):
@@ -195,11 +248,8 @@ def extractTiles(packageId, tileMask, outputFileName, valhallaTileDir, zdict=Non
         print('Warning: File %s does not exist!' % file)
 
     cursor.execute("CREATE UNIQUE INDEX tiles_index ON tiles (zoom_level, tile_column, tile_row)");
-    cursor.close()
+    cursor.execute("VACUUM")
     outputDb.commit()
-
-  with closing(sqlite3.connect(outputFileName)) as outputDb:
-    outputDb.execute("VACUUM")
 
 def processPackage(package, outputDir, tilesDir, zdictDir=None):
   outputFileName = '%s/%s.vtiles' % (outputDir, package['id'])
@@ -212,7 +262,7 @@ def processPackage(package, outputDir, tilesDir, zdictDir=None):
   print('Processing %s' % package['id'])
   try:
     zdict = loadZDict(package['id'], zdictDir)
-    extractTiles(package['id'], package['tile_mask'], outputFileName, tilesDir, zdict)
+    extractTiles(package['id'], package['bbox'], outputFileName, tilesDir, zdict)
   except:
     if os.path.isfile(outputFileName):
       os.remove(outputFileName)
