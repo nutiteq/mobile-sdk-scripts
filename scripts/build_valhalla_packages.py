@@ -21,87 +21,9 @@ DEFAULT_PACKAGE_URL_TEMPLATE = 'FULL_PACKAGE_URL/{version}/{id}.vtiles?appToken=
 # Default package version
 DEFAULT_PACKAGE_VERSION = 1
 
-# Zoom level/precision for tilemasks
-TILEMASK_ZOOM = 10
-
 # Generic projection values
 VALHALLA_BOUNDS = ((-180, -90), (180, 90))
 VALHALLA_TILESIZES = [4.0, 1.0, 0.25]
-MERCATOR_BOUNDS = ((-6378137 * math.pi, -6378137 * math.pi), (6378137 * math.pi, 6378137 * math.pi))
-
-class PackageTileMask(object):
-  def __init__(self, tileMaskStr):
-    self.data = self._decodeTileMask(tileMaskStr)
-    self.rootNode = self._buildTileNode(list(self.data), (0, 0, 0))
-
-  def contains(self, tile):
-    node = self._findTileNode(tile)
-    if node is None:
-      return False
-    return node["inside"]
-
-  def getTiles(self, maxZoom=None):
-    tiles = []
-    if self.data != []:
-      self._buildTiles(list(self.data), (0, 0, 0), maxZoom, tiles)
-    return tiles
-
-  def _decodeTileMask(self, tileMaskStr):
-    str = [c for c in base64.b64decode(tileMaskStr)]
-    data = []
-    for i in range(len(str) * 8):
-      val = (str[i // 8] >> (7 - i % 8)) & 1
-      data.append(val)
-    return data
-
-  def _buildTileNode(self, data, tile):
-    (zoom, x, y) = tile
-    subtiles = data.pop(0)
-    inside = data.pop(0)
-    node = { "tile" : tile, "inside": inside, "subtiles": [] }
-    if subtiles:
-      for dy in range(0, 2):
-        for dx in range(0, 2):
-          node["subtiles"].append(self._buildTileNode(data, (zoom + 1, x * 2 + dx, y * 2 + dy)))
-    return node
-
-  def _findTileNode(self, tile):
-    (zoom, x, y) = tile
-    if zoom == 0:
-      return self.rootNode if tile == (0, 0, 0) else None
-
-    parentNode = self._findTileNode((zoom - 1, x >> 1, y >> 1))
-    if parentNode:
-      for node in parentNode["subtiles"]:
-        if node["tile"] == tile:
-          return node
-      if parentNode["inside"]:
-        return parentNode
-    return None
-
-  def _buildTiles(self, data, tile, maxZoom, tiles):
-    (zoom, x, y) = tile
-    submask = data.pop(0)
-    inside = data.pop(0)
-    if inside:
-      tiles.append(tile)
-    if submask:
-      for dy in range(0, 2):
-        for dx in range(0, 2):
-          self._buildTiles(data, (zoom + 1, x * 2 + dx, y * 2 + dy), maxZoom, tiles)
-    elif maxZoom is not None and inside:
-      for dy in range(0, 2):
-        for dx in range(0, 2):
-          self._buildAllTiles((zoom + 1, x * 2 + dx, y * 2 + dy), maxZoom, tiles)
-
-  def _buildAllTiles(self, tile, maxZoom, tiles):
-    (zoom, x, y) = tile
-    if zoom > maxZoom:
-      return
-    tiles.append(tile)
-    for dy in range(0, 2):
-      for dx in range(0, 2):
-        self._buildAllTiles((zoom + 1, x * 2 + dx, y * 2 + dy), maxZoom, tiles)
 
 def valhallaTilePath(vTile):
   vTileSize = VALHALLA_TILESIZES[vTile[2]]
@@ -113,34 +35,6 @@ def valhallaTilePath(vTile):
     id /= 1000
   splitId = [str(vTile[2])] + splitId
   return '/'.join(splitId) + '.gph'
-
-def _calculateValhallaTiles(mTile, vZoom, epsg3857, epsg4326):
-  mTileSize = (MERCATOR_BOUNDS[1][0] - MERCATOR_BOUNDS[0][0]) / (1 << mTile[2])
-  vTileSize = VALHALLA_TILESIZES[vZoom]
-  mX0, mY0 = mTile[0] * mTileSize + MERCATOR_BOUNDS[0][0], mTile[1] * mTileSize + MERCATOR_BOUNDS[0][1]
-  mX1, mY1 = mX0 + mTileSize, mY0 + mTileSize
-  vX0, vY0 = pyproj.transform(epsg3857, epsg4326, mX0, mY0)
-  vX1, vY1 = pyproj.transform(epsg3857, epsg4326, mX1, mY1)
-  vTile0 = (vX0 - VALHALLA_BOUNDS[0][0]) / vTileSize, (vY0 - VALHALLA_BOUNDS[0][1]) / vTileSize
-  vTile1 = (vX1 - VALHALLA_BOUNDS[0][0]) / vTileSize, (vY1 - VALHALLA_BOUNDS[0][1]) / vTileSize
-  vTiles = []
-  for y in range(int(math.floor(vTile0[1])), int(math.ceil(vTile1[1]))):
-    for x in range(int(math.floor(vTile0[0])), int(math.ceil(vTile1[0]))):
-      vTiles.append((x, y, vZoom))
-  return vTiles
-
-def calculateValhallaTilesFromTileMask(tileMask):
-  vTiles = set()
-  mTiles = [(x, y, zoom) for zoom, x, y in PackageTileMask(tileMask).getTiles(TILEMASK_ZOOM)]
-  epsg3857 = pyproj.Proj(init='EPSG:3857')
-  epsg4326 = pyproj.Proj(init='EPSG:4326')
-  for mTile in mTiles:
-    if mTile[2] < TILEMASK_ZOOM:
-      continue
-    for vZoom, vTileSize in enumerate(VALHALLA_TILESIZES):
-      for vTile in _calculateValhallaTiles(mTile, vZoom, epsg3857, epsg4326):
-        vTiles.add(vTile)
-  return sorted(list(vTiles))
 
 def compressTile(tileData, zdict=None):
   if zdict is not None:
@@ -248,7 +142,7 @@ def extractTiles(packageId, bbox, outputFileName, valhallaTileDir, zdict=None):
         print('Warning: File %s does not exist!' % file)
 
     cursor.execute("CREATE UNIQUE INDEX tiles_index ON tiles (zoom_level, tile_column, tile_row)");
-    cursor.execute("VACUUM")
+    # cursor.execute("VACUUM")
     outputDb.commit()
 
 def processPackage(package, outputDir, tilesDir, zdictDir=None):
