@@ -180,7 +180,7 @@ def extractTiles(packageId, tileMask, outputFileName, valhallaTileDir, zdict=Non
     cursor.execute("INSERT INTO metadata(name, value) VALUES('type', 'routing')")
     cursor.execute("INSERT INTO metadata(name, value) VALUES('version', '1.0')")
     cursor.execute("INSERT INTO metadata(name, value) VALUES('description', 'Nutiteq Valhalla routing package for ' || ?)", (packageId,))
-    cursor.execute("INSERT INTO metadata(name, value) VALUES('format', 'gph')")
+    cursor.execute("INSERT INTO metadata(name, value) VALUES('format', 'gph3')")
     if zdict is not None:
       cursor.execute("INSERT INTO metadata(name, value) VALUES('shared_zlib_dict', ?)", (bytes(zdict),))
 
