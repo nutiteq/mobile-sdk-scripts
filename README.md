@@ -25,7 +25,7 @@ A prerequisite for this is a directory containing .poly files
 python3 scripts/build_poly_tilemasks.py POLY_FILE_DIRECTORY PACKAGES_TEMPLATE_DIRECTORY
 ```
 
-PACKAGES_TEMPLATE_DIRECTORY is the output directory for 'packages.json' file. 
+PACKAGES_TEMPLATE_DIRECTORY is the output directory for 'packages.json.template' file. 
 It is needed as an input for other stages.
 The whole process takes around 30 minutes, depending on the complexity of .poly files.
 
