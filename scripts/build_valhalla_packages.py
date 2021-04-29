@@ -114,13 +114,13 @@ def valhallaTilePath(vTile):
   splitId = [str(vTile[2])] + splitId
   return '/'.join(splitId) + '.gph'
 
-def _calculateValhallaTiles(mTile, vZoom, epsg3857, epsg4326):
+def _calculateValhallaTiles(mTile, vZoom, transformer):
   mTileSize = (MERCATOR_BOUNDS[1][0] - MERCATOR_BOUNDS[0][0]) / (1 << mTile[2])
   vTileSize = VALHALLA_TILESIZES[vZoom]
   mX0, mY0 = mTile[0] * mTileSize + MERCATOR_BOUNDS[0][0], mTile[1] * mTileSize + MERCATOR_BOUNDS[0][1]
   mX1, mY1 = mX0 + mTileSize, mY0 + mTileSize
-  vX0, vY0 = pyproj.transform(epsg3857, epsg4326, mX0, mY0)
-  vX1, vY1 = pyproj.transform(epsg3857, epsg4326, mX1, mY1)
+  vY0, vX0 = transformer.transform(mX0, mY0)
+  vY1, vX1 = transformer.transform(mX1, mY1)
   vTile0 = (vX0 - VALHALLA_BOUNDS[0][0]) / vTileSize, (vY0 - VALHALLA_BOUNDS[0][1]) / vTileSize
   vTile1 = (vX1 - VALHALLA_BOUNDS[0][0]) / vTileSize, (vY1 - VALHALLA_BOUNDS[0][1]) / vTileSize
   vTiles = []
@@ -132,13 +132,12 @@ def _calculateValhallaTiles(mTile, vZoom, epsg3857, epsg4326):
 def calculateValhallaTilesFromTileMask(tileMask):
   vTiles = set()
   mTiles = [(x, y, zoom) for zoom, x, y in PackageTileMask(tileMask).getTiles(TILEMASK_ZOOM)]
-  epsg3857 = pyproj.Proj(init='EPSG:3857')
-  epsg4326 = pyproj.Proj(init='EPSG:4326')
+  transformer = pyproj.Transformer.from_crs('EPSG:3857', 'EPSG:4326')
   for mTile in mTiles:
     if mTile[2] < TILEMASK_ZOOM:
       continue
     for vZoom, vTileSize in enumerate(VALHALLA_TILESIZES):
-      for vTile in _calculateValhallaTiles(mTile, vZoom, epsg3857, epsg4326):
+      for vTile in _calculateValhallaTiles(mTile, vZoom, transformer):
         vTiles.add(vTile)
   return sorted(list(vTiles))
 

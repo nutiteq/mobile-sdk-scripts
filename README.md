@@ -81,7 +81,7 @@ This step should take abound 24 hours.
 ### Build offline Valhalla packages
 
 ```
-python3 scripts/build_valhalla_packges.py data/packages-carto.json.template valhalla_tiles PACKAGES_DIRECTORY
+python3 scripts/build_valhalla_packages.py data/packages-carto.json.template valhalla_tiles PACKAGES_DIRECTORY
 ```
 
 The individual package .vtiles files are placed into PACKAGES_DIRECTORY. Also, the script

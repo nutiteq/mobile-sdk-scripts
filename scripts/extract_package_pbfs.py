@@ -17,8 +17,7 @@ PACKAGE_BATCH_SIZE = 8 # optimal assuming 32GB of RAM
 def calculateExtract(package):
   geom = tilemask.tileMaskPolygon(package['tile_mask'])
 
-  wgs84 = pyproj.Proj(init='epsg:4326')
-  epsg3857 = pyproj.Proj(init='epsg:3857')
+  transformer = pyproj.Transformer.from_crs('EPSG:3857', 'EPSG:4326')
 
   if isinstance(geom, shapely.geometry.Polygon):
     geom = shapely.geometry.MultiPolygon([geom])
@@ -26,9 +25,9 @@ def calculateExtract(package):
   ringsList = []
   for poly in geom.geoms:
     rings = []
-    rings.append([pyproj.transform(epsg3857, wgs84, *p) for p in poly.exterior.coords])
+    rings.append([tuple(reversed(transformer.transform(*p))) for p in poly.exterior.coords])
     for interior in poly.interiors:
-      rings.append([pyproj.transform(epsg3857, wgs84, *p) for p in interior.coords])
+      rings.append([tuple(reversed(transformer.transform(*p))) for p in interior.coords])
     ringsList.append(rings)
   return { 'output': '%s.osm.pbf' % package['id'], 'description': package['id'], 'multipolygon': ringsList }
 

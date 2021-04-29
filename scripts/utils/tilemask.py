@@ -43,11 +43,7 @@ class TileExtractorFromPolygon(object):
     polygons = []
 
     # reproject geojson from wgs84 to Spherical Mercator
-    project = partial(
-      pyproj.transform,
-      pyproj.Proj(init='EPSG:4326'), # WGS84 - standard in geojson
-      pyproj.Proj(init='EPSG:3857')  # Spherical Mercator
-    )
+    transformer = pyproj.Transformer.from_crs('EPSG:4326', 'EPSG:3857')
 
     for feature in js['features']:
       polygons.append(shape(feature['geometry']).buffer(0))
@@ -55,7 +51,7 @@ class TileExtractorFromPolygon(object):
     mergedPolygon = unary_union(polygons)
 
     # convert to spherical mercator (proj of tiles)
-    transformedPolygon = transform(lambda x, y: project(y, x), mergedPolygon)
+    transformedPolygon = transform(lambda x, y: transformer.transform(y, x), mergedPolygon)
 
     # preparing polygon makes intersect-queries 100x faster
     self.polygon = prep(transformedPolygon.simplify(20, preserve_topology=False))

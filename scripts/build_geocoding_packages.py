@@ -52,12 +52,11 @@ def processPackage(package, inputDir, wofFileName, dataDir, outputDir, **kwargs)
 
   print('Processing %s' % package['id'])
   try:
-    epsg3857 = pyproj.Proj(init='epsg:3857')
-    wgs84 = pyproj.Proj(init='epsg:4326')
+    transformer = pyproj.Transformer.from_crs('EPSG:3857', 'EPSG:4326')
     bounds = tilemask.tileMaskPolygon(package['tile_mask']).bounds
-    clipPos0 = pyproj.transform(epsg3857, wgs84, bounds[0], bounds[1])
-    clipPos1 = pyproj.transform(epsg3857, wgs84, bounds[2], bounds[3])
-    clipBounds = (clipPos0[0], clipPos0[1], clipPos1[0], clipPos1[1])
+    clipPos0 = transformer.transform(bounds[0], bounds[1])
+    clipPos1 = transformer.transform(bounds[2], bounds[3])
+    clipBounds = (clipPos0[1], clipPos0[0], clipPos1[1], clipPos1[0])
     importGeocodingDatabase(outputFileName, wofFileName, addressesFileName, highwaysFileName, buildingsFileName, dataDir, clipBounds, **kwargs)
   except:
     if os.path.isfile(outputFileName):
