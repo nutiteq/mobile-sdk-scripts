@@ -6,10 +6,10 @@
 * At least 200GB of free disk space
 * python 3.6+
 * *pip* for python3
-* *protobuf* python package (`pip install protobuf`)
-* *pyproj* python package (`pip install pyproj`)
-* *shapely* python package (`pip install shapely`)
-* *osmium* python package (`pip install osmium`)
+* *protobuf* python package (`pip3 install protobuf`)
+* *pyproj* python package (`pip3 install pyproj`)
+* *shapely* python package (`pip3 install shapely`)
+* *osmium* python package (`pip3 install osmium`)
 
 It is highly recommended to use *PyPy* instead of *CPython*, as it can speed up processing several times.
 Also, it is highly recommended to use solid state storage for the input files and output files as
@@ -22,10 +22,11 @@ the workloads are very IO intensive.
 A prerequisite for this is a directory containing .poly files
 
 ```
-python3 scripts/build_tilemasks.py POLY_FILE_DIRECTORY PACKAGES_TEMPLATE_FILE
+python3 scripts/build_poly_tilemasks.py POLY_FILE_DIRECTORY PACKAGES_TEMPLATE_DIRECTORY
 ```
 
-PACKAGES_TEMPLATE_FILE file will be created that is needed as an input for other stages.
+PACKAGES_TEMPLATE_DIRECTORY is the output directory for 'packages.json' file. 
+It is needed as an input for other stages.
 The whole process takes around 30 minutes, depending on the complexity of .poly files.
 
 
