@@ -8,11 +8,11 @@ import json
 import gzip
 import zlib
 import base64
-import pyproj
 import math
 import sqlite3
 import argparse
 import concurrent.futures
+import utils.pyproj_lite as pyproj
 from contextlib import closing
 
 # Package URL template

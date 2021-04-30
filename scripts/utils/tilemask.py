@@ -31,7 +31,7 @@ except ImportError:
 
 class TileExtractorFromPolygon(object):
   def __init__(self, polygonFile, srid, sridBounds, maxZoom):
-    import pyproj
+    import pyproj_lite as pyproj
 
     self.srid = srid
     self.sridBounds = sridBounds

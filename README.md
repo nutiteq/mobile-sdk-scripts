@@ -7,9 +7,8 @@
 * python 3.6+
 * *pip* for python3
 * *protobuf* python package (`pip3 install protobuf`)
-* *pyproj* python package (`pip3 install pyproj`)
-* *shapely* python package (`pip3 install shapely`)
-* *osmium* python package (`pip3 install osmium`)
+* *shapely 1.7.1 or later* python package (`pip3 install "shapely>=1.7.1"`)
+* *osmium 3.1.0 or later* python package (`pip3 install "osmium>=3.1.0"`)
 
 It is highly recommended to use *PyPy* instead of *CPython*, as it can speed up processing several times.
 Also, it is highly recommended to use solid state storage for the input files and output files as

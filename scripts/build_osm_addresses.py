@@ -10,7 +10,6 @@ import tempfile
 import sqlite3
 import subprocess
 import osmium
-import pyproj
 import shapely.geometry
 import concurrent.futures
 import utils.tilemask as tilemask

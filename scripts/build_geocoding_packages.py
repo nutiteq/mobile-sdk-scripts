@@ -4,9 +4,9 @@ import os
 import json
 import argparse
 import sqlite3
-import pyproj
 import concurrent.futures
 import nutigeodb.osmimporter
+import utils.pyproj_lite as pyproj
 import utils.tilemask as tilemask
 from contextlib import closing
 

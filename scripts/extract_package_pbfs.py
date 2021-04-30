@@ -5,10 +5,10 @@ import io
 import sys
 import json
 import argparse
-import pyproj
 import tempfile
 import subprocess
 import shapely.geometry
+import utils.pyproj_lite as pyproj
 import utils.tilemask as tilemask
 from contextlib import closing
 
