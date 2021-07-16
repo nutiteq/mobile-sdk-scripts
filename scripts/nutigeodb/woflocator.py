@@ -25,7 +25,6 @@ class WOFLocator(object):
       self.cursor.execute("SELECT body FROM geojson WHERE id=?", (id,))
       body = self.cursor.fetchone()[0]
       geojson = json.loads(body)
-      shapely.prepared.prep(shapely.geometry.asShape(geojson['geometry']))
       geometry = shapely.prepared.prep(shapely.geometry.asShape(geojson['geometry']))
       hierarchy = []
       for places in geojson['properties'].get('wof:hierarchy', []):
@@ -42,7 +41,7 @@ class WOFLocator(object):
     for id, placetype, current in self.cursor:
       if current and placetype in self.placetypes:
         parents.append((id, placetype))
-    parents.sort(lambda parent: -self.placetypes.index(parent[1]))
+    parents.sort(key=lambda parent: -self.placetypes.index(parent[1]))
     for id, placetype in parents:
       geometry, hierarchy = self.getGeometryAndHierarchy(id)
       if geometry.contains(shapely.geometry.Point(*pos)):

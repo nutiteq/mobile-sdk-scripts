@@ -10,6 +10,7 @@ import sqlite3
 import nutigeodb.encodingstream as encodingstream
 import nutigeodb.quadindex as quadindex
 import nutigeodb.woflocator as woflocator
+import nutigeodb.buildingslocator as buildingslocator
 import nutigeodb.regexbuilder as regexbuilder
 from nutigeodb.geomutils import *
 from contextlib import closing
@@ -21,6 +22,7 @@ CLASS_TABLE = { 'country': 1, 'region': 2, 'county': 3, 'locality': 4, 'neighbou
 RANK_SCALE = 32767
 DEFAULT_EXTRA_POPULATION = 10
 EXTRA_POPULATION_TABLE = { 'street': 100, 'neighbourhood': 1000, 'locality': 10000, 'county': 100000, 'region': 1000000, 'country': 10000000 }
+SKIPPABLE_TOKEN_PREFIXES = ["l'"]
 MAX_GEOJSON_GEOMETRY_SIZE = 32 * 1024 * 1024
 
 class OSMImporter(object):
@@ -120,6 +122,9 @@ class OSMImporter(object):
           word += self.transliterationTable[c]
         else:
           word += c
+      for prefix in SKIPPABLE_TOKEN_PREFIXES:
+        if word.startswith(prefix):
+          words.append(word[len(prefix):])
       words.append(word)
     return words
 
@@ -635,16 +640,35 @@ class OSMImporter(object):
     cursor2.close()
     cursor1.close()
 
-  def importPeliasAddress(self, peliasData):
+  def extractPeliasData(self, peliasData):
     if not 'data' in peliasData:
-      return
-    data = peliasData['data']
-
-    match = re.search('.*[:](\d+).*', peliasData['_id'])
+      self.warning('Entity data is missing')
+      return None, None
+    match = re.search('.*[:](\d+).*', peliasData.get('_id', ''))
     if not match:
       self.warning('Failed to get entity id')
+      return None, None
+    return int(match.group(1)), peliasData['data']
+
+  def importPeliasBuilding(self, peliasData, buildingsLocator):
+    id, data = self.extractPeliasData(peliasData)
+    if id is None or data is None:
       return
-    id = int(match.group(1))
+    if not id in self.buildingsGeometry:
+      return
+
+    # Extract street and optional house number
+    if 'address_parts' in data:
+      if data['address_parts'].get('street', None) is not None:
+        streetDbid = self.mapEntityName(data['address_parts']['street'], 'street')
+        housenumber = data['address_parts'].get('number', None)
+        geometry = { 'type': 'Polygon', 'coordinates': [self.unpackCoordinates(self.buildingsGeometry[id])] }
+        buildingsLocator.importGeometry(geometry, (streetDbid, housenumber))
+
+  def importPeliasAddress(self, peliasData, buildingsLocator):
+    id, data = self.extractPeliasData(peliasData)
+    if id is None or data is None:
+      return
 
     # Find parent info from gazetter
     entity = self.Entity()
@@ -689,8 +713,10 @@ class OSMImporter(object):
         extraNames.append((key, val))
 
     if entity.dbids.get('street', None) is not None:
+      # Street info is present. Check if we have a building
       if entity.housenumber is not None and id in self.buildingsGeometry:
         entity.geometry = { 'type': 'Polygon', 'coordinates': [self.unpackCoordinates(self.buildingsGeometry[id])] }
+      # Import names only if the name is not 'trivial' (streetname + housenumber)
       if name != '':
         streetNames = [data.get('address_parts', {}).get('street', '')]
         if entity.housenumber is not None:
@@ -698,13 +724,25 @@ class OSMImporter(object):
         if name not in streetNames:
           entity.dbids['name'] = self.mapEntityName(name, 'name', extraNames)
     else:
+      # Check if we have a street based on id.
       if entity.housenumber is None and id in self.streetsGeometry:
         entity.geometry = { 'type': 'LineString', 'coordinates': self.unpackCoordinates(self.streetsGeometry[id]) }
         entity.dbids['street'] = self.mapEntityName(name, 'street', extraNames)
       else:
+        # Not a street, likely a POI.
         if name == '':
           self.warning('No name for entity: %d' % id)
           return
+        # In case of POIs, we will try to locate the building (and thus get full address of the POI).
+        if entity.geometry is not None:
+          if entity.geometry['type'] == 'Point':
+            buildings = buildingsLocator.findGeometry(entity.geometry)
+            if len(buildings) > 0:
+              firstStreetDbid, firstHousenumber = buildings[0]
+              if all([firstStreetDbid == streetDbid for streetDbid, housenumber in buildings]):
+                entity.dbids['street'] = firstStreetDbid
+                if all([firstHousenumber == housenumber for streetDbid, housenumber in buildings]):
+                  entity.housenumber = firstHousenumber
         entity.dbids['name'] = self.mapEntityName(name, 'name', extraNames)
 
     # Check entity validity
@@ -740,16 +778,31 @@ class OSMImporter(object):
     self.storeCategories(cursor.lastrowid, data.get('category', []))
     cursor.close()
 
-  def importPeliasAddresses(self):
+  def importPeliasData(self):
+    # Count number of lines
     with closing(gzip.open(self.addressesFile, 'rb')) as f:
       lineCount = sum(1 for line in f)
+
+    # Create spatial index of buildings
+    buildingsLocator = buildingslocator.BuildingsLocator(self.db)
+    buildingsLocator.initialize()
     with closing(gzip.open(self.addressesFile, 'rb')) as f:
       for line in self.progress(f, total=lineCount):
         try:
-          data = json.loads(line.decode('utf-8'))
+          peliasData = json.loads(line.decode('utf-8'))
         except:
           pass
-        self.importPeliasAddress(data)
+        self.importPeliasBuilding(peliasData, buildingsLocator)
+
+    # Do actual importing, then drop the spatial index
+    with closing(gzip.open(self.addressesFile, 'rb')) as f:
+      for line in self.progress(f, total=lineCount):
+        try:
+          peliasData = json.loads(line.decode('utf-8'))
+        except:
+          pass
+        self.importPeliasAddress(peliasData, buildingsLocator)
+    buildingsLocator.finish()
 
   def importPelias(self):
     self.db.execute("BEGIN")
@@ -774,8 +827,8 @@ class OSMImporter(object):
       self.info('Importing building geometry')
       self.importBuildingGeometries()
 
-    self.info('Importing Pelias addresses')
-    self.importPeliasAddresses()
+    self.info('Importing Pelias data')
+    self.importPeliasData()
 
     if self.importWOF:
       self.info('Importing WhosOnFirst geometry')
